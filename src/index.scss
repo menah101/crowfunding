@@ -3,6 +3,14 @@
 @tailwind utilities;
 @layer base {
   body {
-    @apply font-body;
+    @apply font-body text-base font-normal;
+    line-height: 1.5;
   }
+  input {
+    @apply outline-none;
+  }
+}
+
+input:focus + .error-input {
+  display: none;
 }
