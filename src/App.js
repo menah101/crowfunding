@@ -1,3 +1,4 @@
+import LayoutDashboard from "layout/LayoutDashboard";
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -11,9 +12,12 @@ function App() {
   return (
     <Suspense>
       <Routes>
-        <Route path="/" element={<DashboardPage />} />
-        <Route path="/campaign" element={<CampaignPage />} />
-        <Route path="/start-campaign" element={<StartCampaignPage />} />
+        <Route element={<LayoutDashboard />}>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/campaign" element={<CampaignPage />} />
+          <Route path="/start-campaign" element={<StartCampaignPage />} />
+        </Route>
+
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/sign-in" element={<SignInPage />} />
       </Routes>
