@@ -17,7 +17,7 @@ const DashboardPage = () => {
         <CampaignFeature />
       </Gap>
       <Gap>
-        <Heading className="mb-4">Popular campaign</Heading>
+        <Heading className="mb-4">Popular Campaign</Heading>
         <CampaignGrid>
           {Array(4)
             .fill(0)
@@ -27,7 +27,7 @@ const DashboardPage = () => {
         </CampaignGrid>
       </Gap>
       <Gap>
-        <Heading className="mb-4">Recent campaign</Heading>
+        <Heading className="mb-4">Recent Campaign</Heading>
         <CampaignGrid>
           {Array(4)
             .fill(0)

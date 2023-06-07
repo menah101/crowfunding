@@ -18,13 +18,13 @@ const Input = (props) => {
         id={name}
         type={type}
         className={classNames(
-          "w-full py-4 px-6 border rounded-xl text-sm font-medium  placeholder:text-text4 bg-transparent dark:placeholder:text-text2",
+          "w-full px-6 py-4 text-sm font-medium border rounded-xl placeholder:text-text4 dark:placeholder:text-text2 dark:text-white bg-transparent",
           error.length > 0
             ? "border-error text-error"
-            : "border-strock text-text1 dark:text-white dark:border-darkStroke",
+            : "border-strock text-text1 dark:border-darkStroke",
           children ? "pr-16" : ""
         )}
-        placeholder={error.length >= 0 ? "" : placeholder}
+        placeholder={error.length <= 0 ? placeholder : ""}
         {...field}
         {...rest}
       />
