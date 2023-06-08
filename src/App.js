@@ -1,6 +1,7 @@
-import LayoutDashboard from "layout/LayoutDashboard";
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
+import Modal from "react-modal";
+import LayoutDashboard from "layout/LayoutDashboard";
 
 const DashboardPage = React.lazy(() => import("./pages/DashboardPage"));
 const CampaignPage = React.lazy(() => import("./pages/CampaignPage"));
@@ -8,6 +9,9 @@ const CampaignView = React.lazy(() => import("./pages/CampaignView"));
 const StartCampaignPage = React.lazy(() => import("./pages/StartCampaignPage"));
 const SignUpPage = React.lazy(() => import("./pages/SignUpPage"));
 const SignInPage = React.lazy(() => import("./pages/SignInPage"));
+
+Modal.setAppElement("#root");
+Modal.defaultStyles = {};
 
 function App() {
   return (
