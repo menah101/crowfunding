@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 
 const DashboardPage = React.lazy(() => import("./pages/DashboardPage"));
 const CampaignPage = React.lazy(() => import("./pages/CampaignPage"));
+const CampaignView = React.lazy(() => import("./pages/CampaignView"));
 const StartCampaignPage = React.lazy(() => import("./pages/StartCampaignPage"));
 const SignUpPage = React.lazy(() => import("./pages/SignUpPage"));
 const SignInPage = React.lazy(() => import("./pages/SignInPage"));
@@ -15,6 +16,7 @@ function App() {
         <Route element={<LayoutDashboard />}>
           <Route path="/" element={<DashboardPage />} />
           <Route path="/campaign" element={<CampaignPage />} />
+          <Route path="/campaign/:slug" element={<CampaignView />} />
           <Route path="/start-campaign" element={<StartCampaignPage />} />
         </Route>
 
