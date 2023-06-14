@@ -24,8 +24,8 @@ function App() {
           <Route path="/start-campaign" element={<StartCampaignPage />} />
         </Route>
 
-        <Route path="/sign-up" element={<SignUpPage />} />
-        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/register" element={<SignUpPage />} />
+        <Route path="/login" element={<SignInPage />} />
       </Routes>
     </Suspense>
   );
