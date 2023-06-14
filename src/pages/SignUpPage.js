@@ -12,6 +12,8 @@ import * as yup from "yup";
 import { IconEyeToggle } from "components/icons/IconEyeToggle";
 import useToggleValue from "hooks/useToggleValue";
 import ButtonGoogle from "components/button/ButtonGoogle";
+import { useDispatch } from "react-redux";
+import { authRegister } from "store/auth/auth-slice";
 
 const schema = yup.object({
   name: yup.string("").required("This field is required"),
@@ -20,6 +22,7 @@ const schema = yup.object({
 });
 
 const SignUpPage = () => {
+  const dispatch = useDispatch()
   const { value: acceptTerm, handleToggleValue: handleToggleTerm } = useToggleValue();
   const { value: showPassword, handleToggleValue: handleTogglePassword } = useToggleValue();
 
@@ -32,8 +35,12 @@ const SignUpPage = () => {
     mode: "onSubmit",
   });
 
+  /**
+   * Function register account for user
+   * @param {object} values 
+   */
   const handleSignUp = (values) => {
-    console.log("handleSignUp ~ values", values);
+    dispatch(authRegister(values))
   };
 
   return (
