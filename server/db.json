@@ -1,1 +1,105 @@
-{"users":[{"id":1,"name":"evondev","password":"$2b$10$Vjv3pJY6DgUo2vmniL.9EONytQyoll5M781vq2MDBoWqNGLX10frq","email":"evondevblog@gmail.com","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjY1NjgyNzE5LCJleHAiOjE2NjU4NTU1MTl9.Va_CAMRq11ak74LiCDXzFREYE0W6L_MTqrxMzNZEF3M"},{"id":2,"name":"tuantran","password":"$2b$10$R3TnssJhrYuXi5/u4r9bou/mQ4xllqVf.13rmDqOaPUU4uWyFIUsi","email":"trananhtuan400@gmail.com","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InR1YW50cmFuIiwiaWF0IjoxNjY1OTM5NzMyLCJleHAiOjE2NjYxMTI1MzJ9.9FhKpwnSU2bnUNFtLLOFEqC78_DK5a7xJrAzkr-jj1I","permissions":["CREATE_CAMPAIGN"]}],"categories":[],"campaigns":[{"title":"Building Hope Village","short_description":"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus perspiciatis libero hic, dolor excepturi numquam eum nam nemo quae repellendus mollitia nihil laborum voluptatum quasi molestias aperiam dolore itaque iste!","goal":"100","amount":"200","prefilled":"10,20","video":"https://www.youtube.com/watch?v=yYGqCemyGmE&ab_channel=evondev","country":"Vietnam","content":"<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus perspiciatis libero hic, dolor excepturi numquam eum nam nemo quae repellendus mollitia nihil laborum voluptatum quasi molestias aperiam dolore itaque iste!</p>","startDate":"2022-08-22T17:00:00.000Z","endDate":"2022-08-27T17:00:00.000Z","id":1,"userId":1},{"title":"","short_description":"","goal":"","amount":"","prefilled":"","video":"","country":"Peru","category":"architecture","featured_image":"https://source.unsplash.com/random","content":"<p><br></p>","startDate":"2022-08-23T16:36:28.627Z","endDate":"2022-08-23T16:36:28.627Z","id":2,"userId":2},{"title":"","short_description":"","goal":"","amount":"","prefilled":"","video":"","featured_image":{"medium":"https://i.ibb.co/yNwFTdv/Crowfunding.png","thumb":"https://i.ibb.co/6y30hr9/Crowfunding.png","url":"https://i.ibb.co/p1tjDbV/Crowfunding.png"},"content":"","startDate":"2022-08-23T17:12:09.546Z","endDate":"2022-08-23T17:12:09.546Z","id":3,"userId":3}]}
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "evondev",
+      "password": "$2b$10$Vjv3pJY6DgUo2vmniL.9EONytQyoll5M781vq2MDBoWqNGLX10frq",
+      "email": "evondevblog@gmail.com",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjY1NjgyNzE5LCJleHAiOjE2NjU4NTU1MTl9.Va_CAMRq11ak74LiCDXzFREYE0W6L_MTqrxMzNZEF3M"
+    },
+    {
+      "id": 2,
+      "name": "tuantran",
+      "password": "$2b$10$R3TnssJhrYuXi5/u4r9bou/mQ4xllqVf.13rmDqOaPUU4uWyFIUsi",
+      "email": "trananhtuan400@gmail.com",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InR1YW50cmFuIiwiaWF0IjoxNjY1OTM5NzMyLCJleHAiOjE2NjYxMTI1MzJ9.9FhKpwnSU2bnUNFtLLOFEqC78_DK5a7xJrAzkr-jj1I",
+      "permissions": [
+        "CREATE_CAMPAIGN"
+      ]
+    }
+  ],
+  "categories": [],
+  "campaigns": [
+    {
+      "title": "Building Hope Village",
+      "short_description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus perspiciatis libero hic, dolor excepturi numquam eum nam nemo quae repellendus mollitia nihil laborum voluptatum quasi molestias aperiam dolore itaque iste!",
+      "goal": "100",
+      "amount": "200",
+      "prefilled": "10,20",
+      "video": "https://www.youtube.com/watch?v=yYGqCemyGmE&ab_channel=evondev",
+      "country": "Vietnam",
+      "content": "<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus perspiciatis libero hic, dolor excepturi numquam eum nam nemo quae repellendus mollitia nihil laborum voluptatum quasi molestias aperiam dolore itaque iste!</p>",
+      "startDate": "2022-08-22T17:00:00.000Z",
+      "endDate": "2022-08-27T17:00:00.000Z",
+      "id": 1,
+      "userId": 1
+    },
+    {
+      "title": "",
+      "short_description": "",
+      "goal": "",
+      "amount": "",
+      "prefilled": "",
+      "video": "",
+      "country": "Peru",
+      "category": "architecture",
+      "featured_image": "https://source.unsplash.com/random",
+      "content": "<p><br></p>",
+      "startDate": "2022-08-23T16:36:28.627Z",
+      "endDate": "2022-08-23T16:36:28.627Z",
+      "id": 2,
+      "userId": 2
+    },
+    {
+      "title": "",
+      "short_description": "",
+      "goal": "",
+      "amount": "",
+      "prefilled": "",
+      "video": "",
+      "featured_image": {
+        "medium": "https://i.ibb.co/yNwFTdv/Crowfunding.png",
+        "thumb": "https://i.ibb.co/6y30hr9/Crowfunding.png",
+        "url": "https://i.ibb.co/p1tjDbV/Crowfunding.png"
+      },
+      "content": "",
+      "startDate": "2022-08-23T17:12:09.546Z",
+      "endDate": "2022-08-23T17:12:09.546Z",
+      "id": 3,
+      "userId": 3
+    },
+    {
+      "title": "Title 1",
+      "short_description": "Short Description ",
+      "goal": "100",
+      "amount": "200",
+      "prefilled": "",
+      "video": "https://www.youtube.com/watch?v=Mlge44cTNug",
+      "country": "British Virgin Islands",
+      "content": "<p><span style=\"color: rgb(75, 82, 100);\">Short Description&nbsp;sdasdasdasda</span></p>",
+      "startDate": "2023-06-12T17:00:00.000Z",
+      "endDate": "2023-06-15T17:00:00.000Z",
+      "id": 4
+    },
+    {
+      "title": "Powered Kits Learning Boxes",
+      "short_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis culpa esse amet ipsa voluptas! Dignissimos, deleniti delectus excepturi, mollitia quibusdam quia tempore maiores fugit sed enim ut. Amet, dignissimos provident.",
+      "goal": "100",
+      "amount": "200",
+      "prefilled": "10,20",
+      "video": "https://www.youtube.com/watch?v=JNCEz4PSk5E",
+      "category": "architecture",
+      "featured_image": {
+        "medium": "https://i.ibb.co/cxCF1bc/pic-report00.jpg",
+        "thumb": "https://i.ibb.co/4JYT7sZ/pic-report00.jpg",
+        "url": "https://i.ibb.co/vDQPHsx/pic-report00.jpg"
+      },
+      "method": "method1",
+      "country": "Vietnam",
+      "content": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis culpa esse amet ipsa voluptas! Dignissimos, deleniti delectus excepturi, mollitia quibusdam quia tempore maiores fugit sed enim ut. Amet, dignissimos provident.</p>",
+      "startDate": "2023-06-13T17:00:00.000Z",
+      "endDate": "2023-06-29T17:00:00.000Z",
+      "id": 5
+    }
+  ]
+}

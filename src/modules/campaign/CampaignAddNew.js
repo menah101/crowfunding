@@ -4,21 +4,60 @@ import { Dropdown } from "components/dropdown";
 import { Input } from "components/input";
 import Textarea from "components/input/Textarea";
 import { Label } from "components/label";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import ImageUploader from "quill-image-uploader";
 import axios from "axios";
 import { Button } from "components/button";
-// import { apiURL, imgbbAPI } from "config/config";
+import useOnChange from "hooks/useOnChange";
+import { toast } from "react-toastify";
+import DatePicker from "react-date-picker";
+import "../../../node_modules/react-date-picker/dist/DatePicker.css";
+import "../../../node_modules/react-calendar/dist/Calendar.css";
+import { apiURL, imgbbAPI } from "config/config";
+import ImageUpload from "components/image/ImageUpload";
+
 Quill.register("modules/imageUploader", ImageUploader);
 
+const categoriesData = ["architecture", "education"];
+const methodData = ["method1", "method2"];
+
 const CampaignAddNew = () => {
-  const { handleSubmit, control } = useForm();
-  const handleAddNewCampaign = (values) => {};
+  const { handleSubmit, control, setValue, reset, watch } = useForm();
+
+  const getDropdownLabel = (name, defaultValue = "") => {
+    const value = watch(name) || defaultValue;
+    return value;
+  };
+
+  const resetValues = () => {
+    setStartDate("");
+    setEndDate("");
+    reset({});
+  };
+
+  const handleAddNewCampaign = async (values) => {
+    try {
+      await axios.post(`${apiURL}/campaigns`, {
+        ...values,
+        content,
+        startDate,
+        endDate,
+      });
+      toast.success("Create campaign successfully");
+      resetValues();
+    } catch (error) {
+      toast.error("Can not create new campaign");
+    }
+    // values, startDate, endDate, content
+  };
 
   const [content, setContent] = React.useState("");
+  const [countries, setCountries] = React.useState([]);
+  const [startDate, setStartDate] = React.useState(new Date());
+  const [endDate, setEndDate] = React.useState(new Date());
 
   const modules = React.useMemo(
     () => ({
@@ -49,6 +88,25 @@ const CampaignAddNew = () => {
     []
   );
 
+  const handleSelectDropDownOption = (name, value) => {
+    setValue(name, value);
+  };
+
+  const [filterCountry, setFilterCountry] = useOnChange();
+  useEffect(() => {
+    async function fetchCountries() {
+      if (!filterCountry) return;
+      try {
+        const response = await axios.get(`https://restcountries.com/v3.1/name/${filterCountry}`);
+        setCountries(response.data);
+      } catch (error) {
+        toast.error(error.message);
+      }
+    }
+
+    fetchCountries();
+  }, [filterCountry]);
+
   return (
     <div className="bg-white rounded-xl py-10 px-[66px]">
       <div className="text-center">
@@ -56,7 +114,7 @@ const CampaignAddNew = () => {
           Start a Campaign 🚀
         </h1>
       </div>
-      <form onSubmit={handleSubmit(handleAddNewCampaign())}>
+      <form onSubmit={handleSubmit(handleAddNewCampaign)}>
         <FormRow>
           <FormGroup>
             <Label>Campaign Title *</Label>
@@ -65,10 +123,13 @@ const CampaignAddNew = () => {
           <FormGroup>
             <Label>Select a category *</Label>
             <Dropdown>
-              <Dropdown.Select placeholder="Select the category"></Dropdown.Select>
+              <Dropdown.Select placeholder={getDropdownLabel("category", "Select category")}></Dropdown.Select>
               <Dropdown.List>
-                <Dropdown.Option>Architecture</Dropdown.Option>
-                <Dropdown.Option>Crypto</Dropdown.Option>
+                {categoriesData.map((category) => (
+                  <Dropdown.Option key={category} onClick={() => handleSelectDropDownOption("category", category)}>
+                    <span className="capitalize">{category}</span>
+                  </Dropdown.Option>
+                ))}
               </Dropdown.List>
             </Dropdown>
           </FormGroup>
@@ -87,6 +148,16 @@ const CampaignAddNew = () => {
             onChange={setContent}
           />
         </FormGroup>
+        <FormRow>
+            <FormGroup>
+              <Label>Featured Image</Label>
+              <ImageUpload
+                onChange={setValue}
+                name="featured_image"
+              ></ImageUpload>
+            </FormGroup>
+            <FormGroup></FormGroup>
+          </FormRow>
         <FormRow>
           <FormGroup>
             <Label>Goal *</Label>
@@ -117,20 +188,31 @@ const CampaignAddNew = () => {
           <FormGroup>
             <Label>Campaign End Method</Label>
             <Dropdown>
-              <Dropdown.Select placeholder="Select one"></Dropdown.Select>
+              <Dropdown.Select placeholder={getDropdownLabel("method", "Select one")}></Dropdown.Select>
               <Dropdown.List>
-                <Dropdown.Option>Architecture</Dropdown.Option>
-                <Dropdown.Option>Crypto</Dropdown.Option>
+                {methodData.map((method) => (
+                  <Dropdown.Option key={method} onClick={() => handleSelectDropDownOption("method", method)}>
+                    <span className="capitalize">{method}</span>
+                  </Dropdown.Option>
+                ))}
               </Dropdown.List>
             </Dropdown>
           </FormGroup>
           <FormGroup>
             <Label>Country</Label>
             <Dropdown>
-              <Dropdown.Select placeholder="Select country"></Dropdown.Select>
+              <Dropdown.Select placeholder={getDropdownLabel("country", "Select country")}></Dropdown.Select>
               <Dropdown.List>
-                <Dropdown.Option>Architecture</Dropdown.Option>
-                <Dropdown.Option>Crypto</Dropdown.Option>
+                <Dropdown.Search placeholder="Search country..." onChange={setFilterCountry}></Dropdown.Search>
+                {countries.length > 0 &&
+                  countries.map((country) => (
+                    <Dropdown.Option
+                      key={country?.name?.common}
+                      onClick={() => handleSelectDropDownOption("country", country?.name?.common)}
+                    >
+                      {country?.name?.common}
+                    </Dropdown.Option>
+                  ))}
               </Dropdown.List>
             </Dropdown>
           </FormGroup>
@@ -139,18 +221,19 @@ const CampaignAddNew = () => {
         <FormRow>
           <FormGroup>
             <Label>Start Date</Label>
-            <Input control={control} name="start_date" placeholder="Start Date" />
+            <DatePicker onChange={setStartDate} value={startDate} format="dd-MM-yyyy" />
           </FormGroup>
           <FormGroup>
             <Label>End Date</Label>
-            <Input control={control} name="end_date" placeholder="End Date" />
+            <DatePicker onChange={setEndDate} value={endDate} format="dd-MM-yyyy" />
           </FormGroup>
         </FormRow>
 
         <div className="text-center">
-          <Button kind="primary" className="mx-auto mt-10 px-10" >Submit new Campaign</Button>
+          <Button type="submit" kind="primary" className="mx-auto mt-10 px-10">
+            Submit new Campaign
+          </Button>
         </div>
-
       </form>
     </div>
   );
