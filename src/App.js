@@ -2,6 +2,8 @@ import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Modal from "react-modal";
 import LayoutDashboard from "layout/LayoutDashboard";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DashboardPage = React.lazy(() => import("./pages/DashboardPage"));
 const CampaignPage = React.lazy(() => import("./pages/CampaignPage"));
@@ -27,6 +29,7 @@ function App() {
         <Route path="/register" element={<SignUpPage />} />
         <Route path="/login" element={<SignInPage />} />
       </Routes>
+      <ToastContainer bodyClassName="font-body text-sm" />
     </Suspense>
   );
 }

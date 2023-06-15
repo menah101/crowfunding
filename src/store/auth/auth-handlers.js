@@ -10,6 +10,7 @@ export default function* handleAuthRegister(action) {
   try {
     const response = yield call(requestAuthRegister, payload);
     if (response.status === 201) {
+      console.log('run in...');
       toast.success("Created new account successfully");
     }
   } catch (error) {
@@ -18,6 +19,7 @@ export default function* handleAuthRegister(action) {
 }
 
 function* handleAuthLogin({ payload }) {
+  console.log('payload', payload);
   try {
     const response = yield call(requestAuthLogin, payload);
     if (response.data.accessToken && response.data.refreshToken) {

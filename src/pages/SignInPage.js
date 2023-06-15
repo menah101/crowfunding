@@ -11,6 +11,9 @@ import { useForm } from "react-hook-form";
 import useToggleValue from "hooks/useToggleValue";
 import { IconEyeToggle } from "components/icons/IconEyeToggle";
 import { Button } from "components/button";
+import { useDispatch } from "react-redux";
+import { handleAuthLogin } from "store/auth/auth-handlers";
+import { authLogin } from "store/auth/auth-slice";
 
 const schema = yup.object({
   email: yup.string().email("").required("This field is required"),
@@ -18,6 +21,7 @@ const schema = yup.object({
 });
 
 const SignInPage = () => {
+  const dispatch = useDispatch()
   const { value: showPassword, handleToggleValue: handleTogglePassword } = useToggleValue();
 
   const {
@@ -29,15 +33,20 @@ const SignInPage = () => {
     mode: "onSubmit",
   });
 
-  const handleSignIn = (values) => {
-    console.log("handleSignIn", values);
+  const handleSignIn = async (values) => {
+    try {
+      // dispatch(handleAuthLogin(values))
+      dispatch(authLogin(values));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <LayoutAuth heading="Welcome Back!">
       <p className="mb-6 lg:mb-8 text-center text-xs lg:text-sm font-normal text-text3 dark:text-text3">
         Don't have an account?
-        <Link to="/sign-up" className="text-primary font-medium underline">
+        <Link to="/register" className="text-primary font-medium underline">
           Sign up
         </Link>
       </p>

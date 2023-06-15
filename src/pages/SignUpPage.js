@@ -22,7 +22,7 @@ const schema = yup.object({
 });
 
 const SignUpPage = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { value: acceptTerm, handleToggleValue: handleToggleTerm } = useToggleValue();
   const { value: showPassword, handleToggleValue: handleTogglePassword } = useToggleValue();
 
@@ -30,6 +30,7 @@ const SignUpPage = () => {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
     mode: "onSubmit",
@@ -37,22 +38,29 @@ const SignUpPage = () => {
 
   /**
    * Function register account for user
-   * @param {object} values 
+   * @param {object} values
    */
-  const handleSignUp = (values) => {
-    dispatch(authRegister(values))
+  const handleSignUp = async (values) => {
+    try {
+      dispatch(authRegister(values));
+      reset({});
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <LayoutAuth heading="SignUp">
       <p className="mb-6 lg:mb-8 text-center text-xs lg:text-sm font-normal text-text3 dark:text-text3">
         Already have an account?{" "}
-        <Link to="/sign-in" className="text-primary font-medium underline">
+        <Link to="/login" className="text-primary font-medium underline">
           Sign in
         </Link>
       </p>
       <ButtonGoogle text="Sign up with google" />
-      <p className="text-xs font-normal text-center lg:text-sm lg:mb-8 text-text2 dark:text-white">Or sign up with email</p>
+      <p className="text-xs font-normal text-center lg:text-sm lg:mb-8 text-text2 dark:text-white">
+        Or sign up with email
+      </p>
       <form onSubmit={handleSubmit(handleSignUp)}>
         <FormGroup>
           <Label htmlFor="name">Full Name *</Label>
