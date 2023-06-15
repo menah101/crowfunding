@@ -19,7 +19,6 @@ export default function* handleAuthRegister(action) {
 }
 
 function* handleAuthLogin({ payload }) {
-  console.log('payload', payload);
   try {
     const response = yield call(requestAuthLogin, payload);
     if (response.data.accessToken && response.data.refreshToken) {

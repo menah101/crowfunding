@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LayoutAuth from "../layout/LayoutAuth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ButtonGoogle from "components/button/ButtonGoogle";
 import { Label } from "components/label";
 import { Input } from "components/input";
@@ -11,8 +11,7 @@ import { useForm } from "react-hook-form";
 import useToggleValue from "hooks/useToggleValue";
 import { IconEyeToggle } from "components/icons/IconEyeToggle";
 import { Button } from "components/button";
-import { useDispatch } from "react-redux";
-import { handleAuthLogin } from "store/auth/auth-handlers";
+import { useDispatch, useSelector } from "react-redux";
 import { authLogin } from "store/auth/auth-slice";
 
 const schema = yup.object({
@@ -35,12 +34,19 @@ const SignInPage = () => {
 
   const handleSignIn = async (values) => {
     try {
-      // dispatch(handleAuthLogin(values))
       dispatch(authLogin(values));
     } catch (error) {
       console.log(error);
     }
   };
+
+  const { user } = useSelector(state => state.auth)
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (user && user.id) {
+      navigate("/")
+    }
+  },[navigate, user])
 
   return (
     <LayoutAuth heading="Welcome Back!">
